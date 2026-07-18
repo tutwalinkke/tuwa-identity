@@ -28,7 +28,10 @@ class LoginController extends Controller
             'last_login_at' => now()
         ]);
 
-        $token = $user->createToken('identity-token')->plainTextToken;
+        $expirationMinutes = config('sanctum.expiration');
+        $expiresAt = $expirationMinutes ? now()->addMinutes($expirationMinutes) : null;
+
+        $token = $user->createToken('identity-token', ['*'], $expiresAt)->plainTextToken;
 
         activity()
             ->causedBy($user)
@@ -37,7 +40,8 @@ class LoginController extends Controller
         return response()->json([
             'user' => $user->fresh(),
             'roles' => $user->getRoleNames(),
-            'token' => $token
+            'token' => $token,
+            'expires_at' => $expiresAt,
         ]);
     }
 
