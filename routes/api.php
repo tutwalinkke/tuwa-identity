@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\UserController;
 
 Route::prefix('v1')->group(function () {
 
@@ -20,6 +21,11 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [LoginController::class, 'logout']);
         Route::get('/me', [LoginController::class, 'me']);
         Route::post('/email/verify/resend', [EmailVerificationController::class, 'resend']);
+
+        Route::get('/users', [UserController::class, 'index']);
+        Route::post('/users', [UserController::class, 'store']);
+        Route::patch('/users/{id}/role', [UserController::class, 'updateRole']);
+        Route::patch('/users/{id}/status', [UserController::class, 'updateStatus']);
     });
 
 });
