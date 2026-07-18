@@ -9,10 +9,10 @@ use App\Http\Controllers\TenantController;
 
 Route::prefix('v1')->group(function () {
 
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::middleware('throttle:login')->post('/login', [LoginController::class, 'login']);
 
-    Route::post('/password/forgot', [PasswordResetController::class, 'forgot']);
-    Route::post('/password/reset', [PasswordResetController::class, 'reset']);
+    Route::middleware('throttle:password-forgot')->post('/password/forgot', [PasswordResetController::class, 'forgot']);
+    Route::middleware('throttle:password-reset')->post('/password/reset', [PasswordResetController::class, 'reset']);
 
     Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
         ->middleware('signed')
