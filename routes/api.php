@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\ActivityController;
 
 Route::prefix('v1')->group(function () {
 
@@ -29,6 +30,8 @@ Route::prefix('v1')->group(function () {
         Route::patch('/users/{id}/status', [UserController::class, 'updateStatus']);
 
         Route::get('/tenants/{id}', [TenantController::class, 'show']);
+
+        Route::get('/activity', [ActivityController::class, 'index']);
     });
 
 });
