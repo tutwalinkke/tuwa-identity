@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TenantController;
 
 Route::prefix('v1')->group(function () {
 
@@ -26,6 +27,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/users', [UserController::class, 'store']);
         Route::patch('/users/{id}/role', [UserController::class, 'updateRole']);
         Route::patch('/users/{id}/status', [UserController::class, 'updateStatus']);
+
+        Route::get('/tenants/{id}', [TenantController::class, 'show']);
     });
 
 });
