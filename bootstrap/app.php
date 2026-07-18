@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'auth:sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'tenant.active' => \App\Http\Middleware\EnsureActiveTenant::class,
         ]);
 
         $middleware->redirectGuestsTo(fn () => null);

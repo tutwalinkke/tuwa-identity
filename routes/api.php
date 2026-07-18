@@ -16,7 +16,7 @@ Route::prefix('v1')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware(['auth:sanctum', 'tenant.active'])->group(function () {
         Route::post('/logout', [LoginController::class, 'logout']);
         Route::get('/me', [LoginController::class, 'me']);
         Route::post('/email/verify/resend', [EmailVerificationController::class, 'resend']);
