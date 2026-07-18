@@ -1,0 +1,39 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#7919
+    [34mall[39m: [
+      [34;4mSpatie\Permission\Models\Role[39;24m {#7927
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: [32m"[39m[32msuper-admin[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+      },
+      [34;4mSpatie\Permission\Models\Role[39;24m {#7923
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: [32m"[39m[32mtenant-admin[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+      },
+      [34;4mSpatie\Permission\Models\Role[39;24m {#7922
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: [32m"[39m[32moperator[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+      },
+      [34;4mSpatie\Permission\Models\Role[39;24m {#7921
+        [34mid[39m: [35m4[39m,
+        [34mname[39m: [32m"[39m[32msupport[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+      },
+      [34;4mSpatie\Permission\Models\Role[39;24m {#7920
+        [34mid[39m: [35m5[39m,
+        [34mname[39m: [32m"[39m[32mcustomer[39m[32m"[39m,
+        [34mguard_name[39m: [32m"[39m[32mweb[39m[32m"[39m,
+        [34mcreated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+        [34mupdated_at[39m: [32m"[39m[32m2026-07-17 23:25:11[39m[32m"[39m,
+      },
+    ],
+  }
