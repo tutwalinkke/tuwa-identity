@@ -57,6 +57,11 @@ class UserController extends Controller
 
         if (! $actor->hasRole('super-admin')) {
             $query->where('tenant_id', $actor->tenant_id);
+        } elseif ($request->filled('tenant_id')) {
+            // super-admin may optionally scope the listing to one
+            // specific tenant — used by service accounts (e.g. Tuwa NOC)
+            // that need 'who is responsible for tenant X', not everyone.
+            $query->where('tenant_id', $request->query('tenant_id'));
         }
 
         return response()->json([
