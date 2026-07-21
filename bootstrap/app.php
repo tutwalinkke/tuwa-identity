@@ -18,6 +18,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
             'auth:sanctum' => \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'tenant.active' => \App\Http\Middleware\EnsureActiveTenant::class,
+            'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+            'reject.pending2fa' => \App\Http\Middleware\RejectPendingTwoFactorToken::class,
+            'require.pending2fa' => \App\Http\Middleware\RequirePendingTwoFactorToken::class,
         ]);
 
         $middleware->redirectGuestsTo(fn () => null);

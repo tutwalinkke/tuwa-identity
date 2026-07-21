@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ActivityController;
@@ -12,6 +13,9 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('throttle:login')->post('/login', [LoginController::class, 'login']);
 
+    Route::middleware(['auth:sanctum', 'require.pending2fa', 'throttle:login'])
+        ->post('/login/verify-two-factor', [LoginController::class, 'verifyTwoFactor']);
+
     Route::middleware('throttle:password-forgot')->post('/password/forgot', [PasswordResetController::class, 'forgot']);
     Route::middleware('throttle:password-reset')->post('/password/reset', [PasswordResetController::class, 'reset']);
 
@@ -19,7 +23,7 @@ Route::prefix('v1')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 
-    Route::middleware(['auth:sanctum', 'tenant.active'])->group(function () {
+    Route::middleware(['auth:sanctum', 'tenant.active', 'reject.pending2fa'])->group(function () {
         Route::post('/logout', [LoginController::class, 'logout']);
         Route::get('/me', [LoginController::class, 'me']);
         Route::post('/email/verify/resend', [EmailVerificationController::class, 'resend']);
@@ -32,6 +36,11 @@ Route::prefix('v1')->group(function () {
         Route::get('/tenants/{id}', [TenantController::class, 'show']);
 
         Route::get('/activity', [ActivityController::class, 'index']);
+
+        Route::get('/two-factor/status', [TwoFactorController::class, 'status']);
+        Route::post('/two-factor/setup', [TwoFactorController::class, 'setup']);
+        Route::post('/two-factor/confirm', [TwoFactorController::class, 'confirm']);
+        Route::post('/two-factor/disable', [TwoFactorController::class, 'disable']);
     });
 
 });
